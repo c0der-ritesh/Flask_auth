@@ -73,6 +73,8 @@ def register():
         #print(cnf)
         if password !=cnf:
             flash("Password and Confirm Password not matched !",'error')
+            return render_template('signup.html')
+
         user = User.query.filter_by(registration_number=registration_number).first()
         print(user)
         if user:
