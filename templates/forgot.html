@@ -1,0 +1,51 @@
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="forms">
+            <div class="form login">
+                <center><span class="title3">Forgot Password</span></center>
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+                <form action="#" method="POST">
+                    <div class="input-field">
+                        <input type="text" name="registration_number" placeholder="Enter your registration number"
+                            required>
+                        <i class="uil uil-user icon"></i>
+                    </div>
+                    <div class="input-field button">
+                        <input type="submit" value="Send Otp">
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="password" placeholder="Enter OTP" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+                    <div class="input-field button">
+                        <input type="submit" value="submit">
+                    </div>
+                    <div class="login-signup">
+                        <span class="text">Not registered?
+                            <a href="{{ url_for('register') }}" class="text signup-text">signup</a>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
