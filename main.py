@@ -105,5 +105,5 @@ def logout():
 if __name__ in "__main__":
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+   # app.run(debug=False)
     waitress.serve(app, host="0.0.0.0", port=8080)
