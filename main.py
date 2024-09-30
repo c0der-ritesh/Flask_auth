@@ -47,8 +47,12 @@ def login():
         registration_number = request.form['registration_number']
         password = request.form['password']
         user = User.query.filter_by(registration_number=registration_number).first()
+        print(user)
         if user and user.check_password(password):
+            print("yes")
+            session['registration_number'] = registration_number 
             session['fullname']=user.fullname
+            print("yes1")
             return redirect(url_for('dashboard'))
         else:
             flash("Invalid Credentials !",'error')
@@ -88,6 +92,7 @@ def register():
 @app.route('/dashboard')
 def dashboard():
     if "registration_number" in session:
+        print("yes2")
         return render_template('dashboard.html',fullname=session['fullname'])
     return redirect(url_for('login'))
 
@@ -105,5 +110,5 @@ def logout():
 if __name__ in "__main__":
     with app.app_context():
         db.create_all()
-   # app.run(debug=False)
+    #app.run(debug=True)
     waitress.serve(app, host="0.0.0.0", port=8080)
